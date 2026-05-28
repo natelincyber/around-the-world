@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- EDIT: page + social metadata -->
+<title>Learning to Walk at 240 g — MiNI-Q</title>
+<meta name="description" content="Sim-to-real reinforcement learning for a miniature, wire-free quadruped with unbounded leg joints.">
+<meta property="og:title" content="Learning to Walk at 240 g: Sim-to-Real RL for a Miniature Quadruped">
+<meta property="og:type" content="website">
+<!-- <meta property="og:image" content="static/images/teaser.jpg"> -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Spline+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #15171c;
+    --ink-soft: #4b5160;
+    --line: #e6e7ec;
+    --paper: #ffffff;
+    --paper-2: #f6f7f9;
+    --accent: #1f5cff;       /* EDIT: swap for your accent (UCLA blue ~ #2774AE, gold ~ #FFD100) */
+    --accent-ink: #103aa6;
+    --serif: "Newsreader", Georgia, serif;
+    --sans: "Spline Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --maxw: 920px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-ink); text-decoration: underline; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px;
+    height: 60px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; letter-spacing: .2px; color: var(--ink); }
+  .nav-brand:hover { text-decoration: none; }
+  .nav-links { display: flex; gap: 22px; }
+  .nav-links a {
+    color: var(--ink-soft); font-size: .82rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: .08em;
+  }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+  .nav-toggle { display: none; background: none; border: 0; font-size: 1.4rem; color: var(--ink); cursor: pointer; }
+
+  /* ---------- layout ---------- */
+  section { padding: 56px 24px; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; }
+  .section-title {
+    font-family: var(--mono); font-size: .8rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: .16em; color: var(--accent);
+    margin: 0 0 6px;
+  }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 1.7rem; margin: 0 0 18px; line-height: 1.2; }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; margin: 28px 0 8px; }
+  p { color: var(--ink-soft); margin: 0 0 16px; }
+  .rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    text-align: center; padding: 72px 24px 48px;
+    background:
+      radial-gradient(60% 60% at 50% 0%, rgba(31,92,255,0.06), transparent 70%),
+      linear-gradient(var(--paper), var(--paper));
+    border-bottom: 1px solid var(--line);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {  /* subtle dotted grid */
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background-image: radial-gradient(var(--line) 1px, transparent 1px);
+    background-size: 22px 22px; opacity: .5;
+    -webkit-mask-image: linear-gradient(#000, transparent 65%);
+    mask-image: linear-gradient(#000, transparent 65%);
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 4.4vw, 3rem);
+    line-height: 1.12; letter-spacing: -0.01em; margin: 0 auto 22px; max-width: 16ch;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent-ink); }
+  .authors { font-size: 1.05rem; margin: 0 0 6px; color: var(--ink); }
+  .authors a { font-weight: 500; }
+  .authors .sup { font-size: .7em; vertical-align: super; color: var(--ink-soft); }
+  .affil { color: var(--ink-soft); font-size: .95rem; margin: 8px 0 2px; }
+  .venue {
+    font-family: var(--mono); font-size: .82rem; letter-spacing: .06em;
+    color: var(--ink); margin-top: 14px; text-transform: uppercase;
+  }
+
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 26px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 999px;
+    background: var(--ink); color: #fff; font-size: .9rem; font-weight: 500;
+    border: 1px solid var(--ink); transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { text-decoration: none; color: #fff; transform: translateY(-2px); background: #000; }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn.ghost:hover { background: var(--paper-2); color: var(--ink); border-color: var(--ink-soft); }
+  .btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+  /* ---------- media ---------- */
+  figure { margin: 0; }
+  .media {
+    width: 100%; border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--line); background: var(--paper-2); display: block;
+  }
+  .media img, .media video { width: 100%; display: block; }
+  .placeholder {
+    aspect-ratio: 16 / 9; display: grid; place-items: center; text-align: center;
+    color: var(--ink-soft); font-family: var(--mono); font-size: .82rem; padding: 16px;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 14px, rgba(0,0,0,0.02) 14px 28px),
+      var(--paper-2);
+  }
+  figcaption { font-size: .85rem; color: var(--ink-soft); margin-top: 10px; text-align: center; }
+
+  .video-frame { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  .grid { display: grid; gap: 22px; }
+  @media (min-width: 760px) { .grid.two { grid-template-columns: 1fr 1fr; align-items: center; } }
+
+  /* ---------- bibtex ---------- */
+  .bib {
+    position: relative; background: #0f1116; color: #e8eaf0;
+    border-radius: 12px; padding: 20px 20px 18px; overflow-x: auto;
+    font-family: var(--mono); font-size: .82rem; line-height: 1.6;
+  }
+  .bib pre { margin: 0; white-space: pre; }
+  .copy {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(255,255,255,0.1); color: #fff; border: 0; cursor: pointer;
+    font-family: var(--mono); font-size: .72rem; padding: 6px 10px; border-radius: 6px;
+  }
+  .copy:hover { background: rgba(255,255,255,0.2); }
+
+  /* ---------- related / footer ---------- */
+  .ref { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .ref:last-child { border-bottom: 0; }
+  .ref .t { color: var(--ink); font-weight: 500; }
+  .ref .meta { font-size: .9rem; }
+  footer { padding: 32px 24px 56px; text-align: center; color: var(--ink-soft); font-size: .85rem; border-top: 1px solid var(--line); }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; position: absolute; top: 60px; left: 0; right: 0;
+      flex-direction: column; gap: 0; background: #fff; border-bottom: 1px solid var(--line); padding: 8px 0; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 24px; }
+    .nav-toggle { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#home">MiNI-Q</a>
+    <button class="nav-toggle" aria-label="menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="#video">Video</a>
+      <a href="#abstract">Abstract</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#bibtex">BibTeX</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="home">
+  <!-- EDIT: final paper title -->
+  <h1>Learning to Walk at 240&nbsp;grams: <em>Sim-to-Real RL</em> for a Miniature Quadruped</h1>
+
+  <!-- EDIT: authors + homepage links; add/remove as needed -->
+  <p class="authors">
+    <a href="#">AUTHOR</a><span class="sup">1</span>,
+  </p>
+  <p class="affil"><span class="sup">1</span> Robotics &amp; Mechanisms Laboratory (RoMeLa), Mechanical &amp; Aerospace Engineering, UCLA</p>
+
+  <!-- EDIT: venue / status -->
+  <p class="venue">Under review · 2026</p>
+
+  <!-- EDIT: links (use "#" until live) -->
+  <div class="btns">
+    <a class="btn" href="#">
+      <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a0 0 0 0 1 0 0H6a0 0 0 0 1 0 0V2z"/></svg>
+      Paper
+    </a>
+    <a class="btn ghost" href="#">
+      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      Code
+    </a>
+    <a class="btn ghost" href="#video">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      Video
+    </a>
+    <a class="btn ghost" href="#">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4zM2 18h20v2H2z"/></svg>
+      Poster
+    </a>
+  </div>
+
+  <!-- Teaser image / gif -->
+  <figure style="max-width: 760px; margin: 40px auto 0;">
+    <div class="media">
+      <!-- EDIT: replace placeholder with your teaser, e.g. an onion-skin motion trail:
+           <img src="static/images/teaser.jpg" alt="MiNI-Q motion trail"> -->
+      <div class="placeholder">static/images/teaser.jpg &nbsp;—&nbsp; hero figure (motion trail works great here)</div>
+    </div>
+    <figcaption>MiNI-Q, a 240&nbsp;g wire-free quadruped with mechanically unbounded 2-DOF leg joints.</figcaption>
+  </figure>
+</header>
+
+<!-- ===================== VIDEO ===================== -->
+<section id="video">
+  <div class="wrap">
+    <p class="section-title">Overview Video</p>
+    <h2>Watch it walk</h2>
+    <div class="video-frame">
+      <!-- EDIT: replace VIDEO_ID with your YouTube id, or swap for a local <video> tag -->
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1"
+              title="Overview video" allow="accelerometer; encrypted-media; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===================== ABSTRACT ===================== -->
+<section id="abstract">
+  <div class="wrap">
+    <p class="section-title">Abstract</p>
+    <h2>Abstract</h2>
+    <!-- EDIT: paste your paper's final abstract here -->
+    <p>
+      Miniature quadrupeds under 250&nbsp;grams have largely relied on hand-tuned, open-loop gaits.
+      MiNI-Q's mechanically unbounded leg joints (continuous 360° rotation) open an action space that
+      is well suited to locomotion discovered through reinforcement learning rather than scripted by hand.
+      We present a complete sim-to-real pipeline — motor system identification, training in simulation, and
+      cross-engine validation — that produces a single closed-loop policy running entirely on
+      microcontroller-class compute on the robot.
+    </p>
+    <p>
+      The same checkpoint generalizes across body configurations and orientations, recovers after being
+      dropped or thrown, and remains stable across unseen foot geometries and surfaces — all without
+      retraining. This page collects the video, figures, and code accompanying the paper.
+    </p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===================== METHOD ===================== -->
+<section id="method">
+  <div class="wrap">
+    <p class="section-title">Approach</p>
+    <h2>A single policy, trained in sim, deployed onboard</h2>
+
+    <div class="grid two">
+      <div>
+        <h3>Sim-to-real pipeline</h3>
+        <p>
+          Step-response data from the real XL330 actuators is fit to a motor model, the policy is trained
+          with PPO in simulation under domain randomization, and behavior is cross-validated across engines
+          before deployment. Position-mode PD at the joints keeps transfer stable on a sub-kilogram robot.
+        </p>
+      </div>
+      <figure>
+        <div class="media">
+          <!-- EDIT: <img src="static/images/pipeline.png" alt="Sim-to-real pipeline"> -->
+          <div class="placeholder">static/images/pipeline.png</div>
+        </div>
+      </figure>
+    </div>
+
+    <div class="grid two" style="margin-top: 28px;">
+      <figure>
+        <div class="media">
+          <!-- EDIT: <img src="static/images/onboard.png" alt="Onboard deployment"> -->
+          <div class="placeholder">static/images/onboard.png</div>
+        </div>
+      </figure>
+      <div>
+        <h3>Onboard, closed-loop control</h3>
+        <p>
+          The trained network runs as compiled C on the robot's onboard microcontroller, reading the IMU and
+          joint feedback to produce position targets in real time. No external compute or tether is required.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===================== RESULTS ===================== -->
+<section id="results">
+  <div class="wrap">
+    <p class="section-title">Results</p>
+    <h2>One checkpoint, many conditions</h2>
+
+    <h3>Upright and inverted</h3>
+    <p>
+      Under a gravity-conditioned reference, the same policy tracks velocity commands whether the robot is
+      upright or flipped, with no retraining or separate evaluation.
+    </p>
+    <figure>
+      <div class="media">
+        <!-- EDIT: <video src="static/videos/inverted.mp4" autoplay loop muted playsinline></video> -->
+        <div class="placeholder">static/videos/inverted.mp4</div>
+      </div>
+      <figcaption>Velocity tracking in both orientations from a single checkpoint.</figcaption>
+    </figure>
+
+    <h3>Drop and recovery</h3>
+    <p>
+      Released from random heights and orientations, the policy returns to a stable trot within a few stride
+      periods on the majority of trials.
+    </p>
+    <figure>
+      <div class="media">
+        <!-- EDIT: <video src="static/videos/recovery.mp4" autoplay loop muted playsinline></video> -->
+        <div class="placeholder">static/videos/recovery.mp4</div>
+      </div>
+      <figcaption>Throw-and-walk recovery on hardware.</figcaption>
+    </figure>
+
+    <h3>Unseen feet and surfaces</h3>
+    <p>
+      The trained checkpoint sustains velocity tracking across foot geometries it never saw in training, over
+      surfaces spanning a wide friction range.
+    </p>
+    <figure>
+      <div class="media">
+        <!-- EDIT: <img src="static/images/feet.png" alt="Foot geometry generalization"> -->
+        <div class="placeholder">static/images/feet.png</div>
+      </div>
+      <figcaption>Generalization across unseen foot shapes and surfaces.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===================== BIBTEX ===================== -->
+<section id="bibtex">
+  <div class="wrap">
+    <p class="section-title">Citation</p>
+    <h2>BibTeX</h2>
+    <div class="bib">
+      <button class="copy" onclick="copyBib(this)">copy</button>
+<pre id="bibtext">@inproceedings{floresalvarez2026miniq,
+  title     = {Learning to Walk at 240 grams: Sim-to-Real Reinforcement
+               Learning for Miniature Quadruped Locomotion},
+  author    = {Flores Alvarez, Arturo and Koh, Daniel and Hong, Dennis},
+  booktitle = {EDIT: venue},
+  year      = {2026}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===================== RELATED ===================== -->
+<section id="related">
+  <div class="wrap">
+    <p class="section-title">Related</p>
+    <h2>Related work</h2>
+    <!-- EDIT: link your own prior work / the MiNI-Q hardware paper -->
+    <div class="ref">
+      <span class="t">MiNI-Q: A Miniature, Wire-Free Quadruped with Unbounded, Independently Actuated Leg Joints</span><br>
+      <span class="meta">Koh, Shah, Wu, Hong · 2026 ·
+        <a href="https://arxiv.org/abs/2603.11537">arXiv</a> /
+        <a href="https://github.com/RoMeLaUCLA/miniq-public">code</a>
+      </span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Page template adapted from
+  <a href="https://gmargo11.github.io/walk-these-ways/">Walk These Ways</a>.
+</footer>
+
+<script>
+  function copyBib(btn) {
+    const txt = document.getElementById('bibtext').innerText;
+    navigator.clipboard.writeText(txt).then(() => {
+      btn.textContent = 'copied!';
+      setTimeout(() => (btn.textContent = 'copy'), 1500);
+    });
+  }
+  // close mobile menu after tapping a link
+  document.querySelectorAll('#navlinks a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open')));
+</script>
+</body>
+</html>

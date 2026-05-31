@@ -159,6 +159,7 @@ body {
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  will-change: transform;
 }
 .banner-content {
   position: relative;
@@ -166,6 +167,7 @@ body {
   text-align: center;
   padding: 0 1.5rem;
   margin-top: 22vh;
+  transition: opacity 0.1s linear, transform 0.1s linear;
 }
 .banner-title {
   font-weight: 800;

@@ -68,11 +68,11 @@
   <!-- ============================================ -->
   <!-- FULL-SCREEN VIDEO BANNER -->
   <!-- ============================================ -->
-  <section class="banner-hero">
-    <video class="banner-video" autoplay muted loop playsinline preload="auto" poster="static/images/banner_poster.jpg">
+  <section class="banner-hero" id="banner-hero">
+    <video class="banner-video" id="banner-video" autoplay muted loop playsinline preload="auto" poster="static/images/banner_poster.jpg">
       <source src="static/videos/header_walking.mp4" type="video/mp4">
     </video>
-    <div class="banner-content">
+    <div class="banner-content" id="banner-content">
       <h1 class="banner-title">Around the World 🌎</h1>
       <h2 class="banner-subtitle">Posture-Conditioned Locomotion on a Continuous-Rotation Quadruped</h2>
     </div>
@@ -86,10 +86,6 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-
-            <div class="publication-icon" style="margin-bottom: 1rem;">
-              <i class="fas fa-paw" style="font-size: 3rem;"></i>
-            </div>
 
             <h1 class="title is-1 publication-title">Around the World: Posture-Conditioned Locomotion on a Continuous-Rotation Quadruped</h1>
 
@@ -142,39 +138,35 @@
 <!-- VIDEO -->
 <!-- ============================================ -->
 <section class="section">
-  <div class="container is-fullhd">
+  <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full">
         <h2 class="title is-3 has-text-centered">Video</h2>
         <div style="display:flex; align-items:center; justify-content:center; gap:2rem;">
-
           <div style="flex:none;">
-            <iframe style="display:block; height:480px; aspect-ratio:16/9;"
+            <iframe style="display:block; height:300px; aspect-ratio:16/9;"
               src="https://www.youtube.com/embed/4LxNCAjvh9M?si=YJZxCS9w0EPheMch"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Continuous Walking</h3>
           </div>
-
           <div style="flex:none;">
-            <iframe style="display:block; width:270px; height:480px;"
+            <iframe style="display:block; width:169px; height:300px;"
               src="https://www.youtube.com/embed/cB3_PSLltPQ?si=cW0HvQmlyKNgKxN0"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Multiple Throws</h3>
           </div>
-
           <div style="flex:none;">
-            <iframe style="display:block; height:480px; aspect-ratio:16/9;"
+            <iframe style="display:block; height:300px; aspect-ratio:16/9;"
               src="https://www.youtube.com/embed/leLMORKqANU?si=8e8FOLAJxY2drpqQ"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Different Floors</h3>
           </div>
-
         </div>
       </div>
     </div>
@@ -338,7 +330,7 @@
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <h3 class="subtitle has-text-centered is-6">One of each</h3>
+            <h3 class="subtitle has-text-centered is-6">Upright Pitch</h3>
           </div>
 
           <div class="column">
@@ -347,7 +339,7 @@
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <h3 class="subtitle has-text-centered is-6">One of each</h3>
+            <h3 class="subtitle has-text-centered is-6">Upright Roll</h3>
           </div>
 
           <div class="column">
@@ -356,7 +348,7 @@
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <h3 class="subtitle has-text-centered is-6">One of each</h3>
+            <h3 class="subtitle has-text-centered is-6">Inverted Pitch</h3>
           </div>
 
           <div class="column">
@@ -365,7 +357,7 @@
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <h3 class="subtitle has-text-centered is-6">One of each</h3>
+            <h3 class="subtitle has-text-centered is-6">Inverted Roll</h3>
           </div>
 
         </div>
@@ -386,17 +378,17 @@
 
           <div class="column">
             <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/_iKsQODN9hs?si=mZXTKKUXtElBSJWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <h3 class="subtitle has-text-centered is-6">Disturbance 1</h3>
+            <h3 class="subtitle has-text-centered is-6">Flip</h3>
           </div>
 
           <div class="column">
             <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/nHrbrmaiE64?si=OqlUuIKIwLR-UuZi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <h3 class="subtitle has-text-centered is-6">Disturbance 2</h3>
+            <h3 class="subtitle has-text-centered is-6">Nudge</h3>
           </div>
 
           <div class="column">
             <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/hjoSQdjWrWU?si=pDYXbmgRn4zEZWE-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <h3 class="subtitle has-text-centered is-6">Disturbance 3</h3>
+            <h3 class="subtitle has-text-centered is-6">Breakdance</h3>
           </div>
 
         </div>
@@ -415,25 +407,25 @@
       <div class="column is-full">
         <h2 class="title is-3 has-text-centered">Foot Iterations</h2>
 
-        <div class="columns is-centered">
+        <div class="columns is-centered is-vcentered">
           <div class="column is-half">
-            <!-- TODO: Photo of all the feet (static image, not video) -->
-            <img src="static/images/placeholder.jpg" alt="Photo of all feet variants" loading="lazy"/>
+            <img src="static/images/feetpics.png" alt="Photo of all feet variants" loading="lazy" style="width:100%; aspect-ratio:16/9; object-fit:cover;"/>
             <h3 class="subtitle has-text-centered is-6">Photo of all the Feet</h3>
           </div>
-
           <div class="column is-half">
             <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/SwPjpktgLk4?si=Ip0sj7BMV1FkAutl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Changing Foot</h3>
           </div>
         </div>
 
+        <!-- Second video centered below -->
         <div class="columns is-centered">
           <div class="column is-half">
             <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/WshcuuLh-ss?si=qROw9gBl7nKqG0Os" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Walking with Different Feet</h3>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -472,6 +464,36 @@
 </footer>
 
   </main>
+  <script>
+    (function () {
+      var banner = document.getElementById('banner-hero');
+      var content = document.getElementById('banner-content');
+      var vid = document.getElementById('banner-video');
+
+      function onScroll() {
+        var scrollY = window.scrollY;
+        var bannerHeight = banner.offsetHeight;
+        var progress = Math.min(scrollY / bannerHeight, 1);
+
+        // Fade and slide up the text
+        if (content) {
+          content.style.opacity = 1 - progress * 2;
+          content.style.transform = 'translateY(' + (-progress * 60) + 'px)';
+        }
+
+        if (vid) {
+          vid.style.transform = 'translateY(' + (scrollY * 0.8) + 'px)';
+        }
+
+        // Parallax: slow the video background scroll
+        if (banner) {
+          banner.style.backgroundPositionY = (scrollY * 0.4) + 'px';
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
 
   <script>
     (function () {

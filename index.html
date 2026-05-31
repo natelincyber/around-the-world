@@ -3,16 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Primary Meta Tags -->
   <meta name="title" content="Around the World: Posture-Conditioned Locomotion on a Continuous-Rotation Quadruped">
   <meta name="description" content="A single learned policy for throw recovery, multi-posture walking, and hardware variation on the MiNI-Q, a 270g continuous-rotation quadruped, deployed onboard.">
   <meta name="keywords" content="quadruped locomotion, sim-to-real, continuous rotation, morphology conditioning, onboard inference, reinforcement learning, MiNI-Q, robotics">
   <meta name="author" content="Anonymous Author(s)">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
-
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="UCLA RoMeLa">
   <meta property="og:title" content="Around the World: Posture-Conditioned Locomotion on a Continuous-Rotation Quadruped">
@@ -22,137 +18,47 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Around the World - Research Preview">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Around the World: Posture-Conditioned Locomotion on a Continuous-Rotation Quadruped">
   <meta name="twitter:description" content="A single learned policy for throw recovery, multi-posture walking, and hardware variation on the MiNI-Q, a 270g continuous-rotation quadruped, deployed onboard.">
   <meta name="twitter:image" content="https://natelincyber.github.io/around-the-world/static/images/social_preview.png">
-
-  <!-- Academic/Research Specific -->
   <meta name="citation_title" content="Around the World: Posture-Conditioned Locomotion on a Continuous-Rotation Quadruped">
   <meta name="citation_publication_date" content="2026">
   <meta name="citation_conference_title" content="CoRL 2026">
-
   <meta name="theme-color" content="#2563eb">
-
-  <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://ajax.googleapis.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
   <title>Around the World: Posture-Conditioned Locomotion on a Continuous-Rotation Quadruped</title>
-
-  <!-- Favicon and App Icons -->
-  <!-- TODO: Replace placeholder favicon with the website icon -->
   <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
   <link rel="apple-touch-icon" href="static/images/favicon.png">
-
-  <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-
-  <!-- Non-critical CSS - Load asynchronously -->
   <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
   <noscript>
     <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
     <link rel="stylesheet" href="static/css/bulma-slider.min.css">
     <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   </noscript>
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Defer non-critical JavaScript -->
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script defer src="static/js/bulma-carousel.min.js"></script>
   <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
-
-  <!-- Banner styles -->
-  <style>
-    .banner-hero {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      margin-left: calc(50% - 50vw);
-      overflow: hidden;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-    }
-    .banner-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    /* Preloader overlay */
-    #preloader {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.5s ease;
-    }
-    #preloader.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-    .preloader-spinner {
-      width: 3rem;
-      height: 3rem;
-      border: 4px solid #e0e0e0;
-      border-top-color: #2563eb;
-      border-radius: 50%;
-      animation: preloader-spin 0.8s linear infinite;
-    }
-    @keyframes preloader-spin {
-      to { transform: rotate(360deg); }
-    }
-    .banner-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 0 1.5rem;
-      margin-top: 22vh;
-    }
-    .banner-title {
-      font-weight: 800;
-      font-size: clamp(3rem, 9vw, 7rem);
-      line-height: 1.05;
-      margin: 0;
-    }
-    .banner-subtitle {
-      font-weight: 500;
-      font-size: clamp(1.1rem, 3vw, 2rem);
-      line-height: 1.2;
-      margin: 1rem 0 0 0;
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Preloader: hides the page until the banner video can play through -->
   <div id="preloader">
     <div class="preloader-spinner"></div>
   </div>
 
-  <!-- Scroll to Top Button -->
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
@@ -163,7 +69,6 @@
   <!-- FULL-SCREEN VIDEO BANNER -->
   <!-- ============================================ -->
   <section class="banner-hero">
-    <!-- TODO: Replace with background banner video -->
     <video class="banner-video" autoplay muted loop playsinline preload="auto" poster="static/images/banner_poster.jpg">
       <source src="static/videos/header_walking.mp4" type="video/mp4">
     </video>
@@ -182,10 +87,8 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
 
-            <!-- TODO: Replace with website icon -->
             <div class="publication-icon" style="margin-bottom: 1rem;">
               <i class="fas fa-paw" style="font-size: 3rem;"></i>
-              <!-- placeholder icon -->
             </div>
 
             <h1 class="title is-1 publication-title">Around the World: Posture-Conditioned Locomotion on a Continuous-Rotation Quadruped</h1>
@@ -208,40 +111,24 @@
 
             <div class="column has-text-centered">
               <div class="publication-links">
-
-                <!-- Paper Link -->
                 <span class="link-block">
-                  <a href="#" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
+                  <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
               </span>
-
-              <!-- arXiv (placeholder) -->
               <span class="link-block">
-                <a href="#" target="_blank"
-                class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                  <i class="ai ai-arxiv"></i>
-                </span>
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
                 <span>arXiv</span>
               </a>
             </span>
-
-            <!-- Code (placeholder) -->
             <span class="link-block">
-              <a href="#" target="_blank"
-              class="external-link button is-normal is-rounded is-dark">
-              <span class="icon">
-                <i class="fab fa-github"></i>
-              </span>
+              <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="fab fa-github"></i></span>
               <span>Code</span>
             </a>
           </span>
-
         </div>
       </div>
     </div>
@@ -255,32 +142,36 @@
 <!-- VIDEO -->
 <!-- ============================================ -->
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container is-fullhd">
     <div class="columns is-centered">
       <div class="column is-full">
         <h2 class="title is-3 has-text-centered">Video</h2>
-        <div class="columns is-centered">
+        <div style="display:flex; align-items:center; justify-content:center; gap:2rem;">
 
-          <div class="column">
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+          <div style="flex:none;">
+            <iframe style="display:block; height:480px; aspect-ratio:16/9;"
+              src="https://www.youtube.com/embed/4LxNCAjvh9M?si=YJZxCS9w0EPheMch"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Continuous Walking</h3>
           </div>
 
-          <div class="column">
-            <!-- TODO: Multiple Throws video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+          <div style="flex:none;">
+            <iframe style="display:block; width:270px; height:480px;"
+              src="https://www.youtube.com/embed/cB3_PSLltPQ?si=cW0HvQmlyKNgKxN0"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Multiple Throws</h3>
           </div>
 
-          <div class="column">
-            <!-- TODO: Different Floors video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+          <div style="flex:none;">
+            <iframe style="display:block; height:480px; aspect-ratio:16/9;"
+              src="https://www.youtube.com/embed/leLMORKqANU?si=8e8FOLAJxY2drpqQ"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Different Floors</h3>
           </div>
 
@@ -289,7 +180,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- ============================================ -->
 <!-- ABSTRACT -->
@@ -321,7 +211,7 @@
         <div class="columns is-centered">
 
           <div class="column">
-            <!-- TODO: IsaacGym video -->
+            <!-- PLACEHOLDER: Video - IsaacGym -->
             <video controls muted loop playsinline width="100%" preload="metadata">
               <source src="static/videos/placeholder.mp4" type="video/mp4">
             </video>
@@ -329,7 +219,7 @@
           </div>
 
           <div class="column">
-            <!-- TODO: IsaacLab video -->
+            <!-- PLACEHOLDER: Video - IsaacLab -->
             <video controls muted loop playsinline width="100%" preload="metadata">
               <source src="static/videos/placeholder.mp4" type="video/mp4">
             </video>
@@ -337,7 +227,7 @@
           </div>
 
           <div class="column">
-            <!-- TODO: MuJoCo video -->
+            <!-- PLACEHOLDER: Video - MuJoCo -->
             <video controls muted loop playsinline width="100%" preload="metadata">
               <source src="static/videos/placeholder.mp4" type="video/mp4">
             </video>
@@ -352,45 +242,50 @@
 
 
 <!-- ============================================ -->
-<!-- WALK BOTH WAYS (GAITS) -->
+<!-- LOCOMOTION -->
 <!-- ============================================ -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full">
         <h2 class="title is-3 has-text-centered">Locomotion</h2>
+
+        <!-- Row 1: upright gaits -->
         <div class="columns is-centered">
 
           <div class="column">
-            <!-- TODO: ANYmal gait video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+            <iframe width="100%" style="aspect-ratio:16/9; min-height:220px;" src="https://www.youtube.com/embed/szjkFuPYiro?si=XAVDSbL3I0we-70N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">ANYmal</h3>
           </div>
 
           <div class="column">
-            <!-- TODO: Crouch gait video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+            <iframe width="100%" style="aspect-ratio:16/9; min-height:220px;" src="https://www.youtube.com/embed/6GgQFjjsXqI?si=qF1oQx0VD5gW-gJD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Crouch</h3>
           </div>
 
           <div class="column">
-            <!-- TODO: Q8bot gait video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+            <iframe width="100%" style="aspect-ratio:16/9; min-height:220px;" src="https://www.youtube.com/embed/Fe5GHVIp2eA?si=SURGoWSkyTH6k35t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Q8bot</h3>
           </div>
 
+        </div>
+
+        <!-- Row 2: inverted gaits -->
+        <div class="columns is-centered">
+
           <div class="column">
-            <!-- TODO: Different MiNIQ video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
-            <h3 class="subtitle has-text-centered is-6">Different MiNIQ</h3>
+            <iframe width="100%" style="aspect-ratio:16/9; min-height:220px;" src="https://www.youtube.com/embed/dXiZg62xko0?si=G75aiMAECjjpWlWC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h3 class="subtitle has-text-centered is-6">Inverted ANYmal</h3>
+          </div>
+
+          <div class="column">
+            <iframe width="100%" style="aspect-ratio:16/9; min-height:220px;" src="https://www.youtube.com/embed/HbEIwO34w-g?si=tG-yr-TID6oBPS60" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h3 class="subtitle has-text-centered is-6">Inverted Crouch</h3>
+          </div>
+
+          <div class="column">
+            <iframe width="100%" style="aspect-ratio:16/9; min-height:220px;" src="https://www.youtube.com/embed/yKfOh2_5ACo?si=2JYxB2Y2_Gk0S5eQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h3 class="subtitle has-text-centered is-6">Inverted Q8bot</h3>
           </div>
 
         </div>
@@ -401,21 +296,23 @@
 
 
 <!-- ============================================ -->
-<!-- POSTURE SWITCHING -->
+<!-- EXTRAS -->
 <!-- ============================================ -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full">
-        <h2 class="title is-3 has-text-centered">Attitude control</h2>
+        <h2 class="title is-3 has-text-centered">Extras</h2>
         <div class="columns is-centered">
 
           <div class="column">
-            <!-- TODO: Posture control video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
-            <h3 class="subtitle has-text-centered is-6">Roll Pitch</h3>
+            <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/YsYYdyjCa6M?si=iDCW63JdW8hep_6C" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h3 class="subtitle has-text-centered is-6">Different MiNIQ</h3>
+          </div>
+
+          <div class="column">
+            <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/iePLLaw362M?si=kNDI_kXUfY7OgiR4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h3 class="subtitle has-text-centered is-6">Attitude Control (Roll Pitch)</h3>
           </div>
 
         </div>
@@ -436,31 +333,38 @@
         <div class="columns is-centered">
 
           <div class="column">
-            <!-- TODO: One of each video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+            <iframe width="100%" style="height:380px; display:block;"
+              src="https://www.youtube.com/embed/AQ47RdRtGaw?si=U15pfMEaAu-IXCLQ"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">One of each</h3>
           </div>
-            <div class="column">
-            <!-- TODO: One of each video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
-            <h3 class="subtitle has-text-centered is-6">One of each</h3>
-          </div>
-            <div class="column">
-            <!-- TODO: One of each video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
-            <h3 class="subtitle has-text-centered is-6">One of each</h3>
-          </div>
+
           <div class="column">
-            <!-- TODO: One of each video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+            <iframe width="100%" style="height:380px; display:block;"
+              src="https://www.youtube.com/embed/gFu6sW809zY?si=9ZTdMIUJtBh7h4nA"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h3 class="subtitle has-text-centered is-6">One of each</h3>
+          </div>
+
+          <div class="column">
+            <iframe width="100%" style="height:380px; display:block;"
+              src="https://www.youtube.com/embed/PMDXqLUjiuA?si=0iAXqoxCNyM5Ii8l"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h3 class="subtitle has-text-centered is-6">One of each</h3>
+          </div>
+
+          <div class="column">
+            <iframe width="100%" style="height:380px; display:block;"
+              src="https://www.youtube.com/embed/mVvt6I78yuE?si=0eHGcYugoo3ojvFD"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">One of each</h3>
           </div>
 
@@ -470,38 +374,28 @@
   </div>
 </section>
 
-
 <!-- ============================================ -->
-<!-- DISTURBANCE TEST -->
+<!-- DISTURBANCE -->
 <!-- ============================================ -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full">
-        <h2 class="title is-3 has-text-centered">Disturbance Test</h2>
+        <h2 class="title is-3 has-text-centered">Disturbance</h2>
         <div class="columns is-centered">
 
           <div class="column">
-            <!-- TODO: DJI_20260527135844_0021_D / Edited -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+            <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/_iKsQODN9hs?si=mZXTKKUXtElBSJWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Disturbance 1</h3>
           </div>
 
           <div class="column">
-            <!-- TODO: DJI_20260527135404_0016_D / Edited -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+            <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/nHrbrmaiE64?si=OqlUuIKIwLR-UuZi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Disturbance 2</h3>
           </div>
 
           <div class="column">
-            <!-- TODO: DJI_20260527135120_0014_D / Edited -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+            <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/hjoSQdjWrWU?si=pDYXbmgRn4zEZWE-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Disturbance 3</h3>
           </div>
 
@@ -520,30 +414,25 @@
     <div class="columns is-centered">
       <div class="column is-full">
         <h2 class="title is-3 has-text-centered">Foot Iterations</h2>
-        <div class="columns is-centered">
 
-          <div class="column">
-            <!-- TODO: Photo of all the feet -->
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <!-- TODO: Photo of all the feet (static image, not video) -->
             <img src="static/images/placeholder.jpg" alt="Photo of all feet variants" loading="lazy"/>
             <h3 class="subtitle has-text-centered is-6">Photo of all the Feet</h3>
           </div>
 
-          <div class="column">
-            <!-- TODO: Changing Foot video -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+          <div class="column is-half">
+            <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/SwPjpktgLk4?si=Ip0sj7BMV1FkAutl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Changing Foot</h3>
           </div>
+        </div>
 
-          <div class="column">
-            <!-- TODO: Videos of different foot while walking -->
-            <video controls muted loop playsinline width="100%" preload="metadata">
-              <source src="static/videos/placeholder.mp4" type="video/mp4">
-            </video>
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/WshcuuLh-ss?si=qROw9gBl7nKqG0Os" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <h3 class="subtitle has-text-centered is-6">Walking with Different Feet</h3>
           </div>
-
         </div>
       </div>
     </div>
@@ -584,7 +473,6 @@
 
   </main>
 
-  <!-- Hold the page behind a preloader until the banner video can play through (with timeout fallback) -->
   <script>
     (function () {
       var preloader = document.getElementById('preloader');
@@ -600,17 +488,12 @@
 
       if (!vid) { reveal(); return; }
 
-      // Reveal as soon as the browser is confident it can play start-to-finish
       vid.addEventListener('canplaythrough', reveal, { once: true });
-
-      // Fallbacks so a slow/failed load never traps the visitor on the loader
       vid.addEventListener('error', reveal, { once: true });
       window.addEventListener('load', function () { setTimeout(reveal, 8000); });
 
-      // If it's already buffered by the time this runs
       if (vid.readyState >= 4) reveal();
 
-      // Once visible, stop decoding when the banner scrolls off-screen
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
